@@ -1,5 +1,5 @@
-import { House } from './House.js';
-import { Robot, createLayout } from './Robot.js';
+import { House } from "./House.js";
+import { Robot, createLayout } from "./Robot.js";
 
 const play = () => {
   const houseSize = [10, 10];

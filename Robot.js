@@ -1,5 +1,4 @@
-import { House } from './House.js';
-import { Piece } from './Piece.js';
+import { House } from "./House.js";
 
 export class Robot {
   constructor() {
@@ -30,23 +29,23 @@ export class Robot {
 
   checkBattery() {
     if (this.battery <= 0) {
-      console.log('🔋 épuisée. Retour à la station de recharge.');
+      console.log("🔋 épuisée. Retour à la station de recharge.");
       this.position = [0, 0];
       this.battery = 100;
-      console.log('🔋 chargée. Prêt à reprendre le nettoyage.');
+      console.log("🔋 chargée. Prêt à reprendre le nettoyage.");
       return true;
     }
   }
 
   logBattery() {
-    let batterie = '';
+    let batterie = "";
     let saveBattery = this.battery;
     // show 🟩 each 10% or 🟥 each 10% with no battery
     for (let i = 0; i < 10; i++) {
       if (saveBattery > 0) {
-        batterie += '🟩';
+        batterie += "🟩";
       } else {
-        batterie += '🟥';
+        batterie += "🟥";
       }
       saveBattery -= 10;
     }
@@ -64,6 +63,7 @@ export class Robot {
       `🧹 Nettoyage de la position ${this.position}. État de la batterie: ${this.battery}%`
     );
 
+    console.warn(this);
     house.clean(this.position);
 
     this.checkBattery();
@@ -76,7 +76,7 @@ export class Robot {
   doWork(house) {
     const nearestDirtyPiece = house.nearestDirtyPiece();
     if (!nearestDirtyPiece) {
-      console.log('🤖 a terminé le nettoyage.');
+      console.log("🤖 a terminé le nettoyage.");
       return false;
     }
 
@@ -101,18 +101,3 @@ export class Robot {
     return true;
   }
 }
-
-export const createLayout = (size) => {
-  const houseLayout = [];
-
-  for (let i = 0; i < size[0]; i++) {
-    const row = [];
-
-    for (let j = 0; j < size[1]; j++) {
-      const random = Math.random();
-      row.push(new Piece(random < 0.5 ? 'clean' : 'dirty'));
-    }
-    houseLayout.push(row);
-  }
-  return houseLayout;
-};
