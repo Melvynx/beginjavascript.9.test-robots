@@ -63,7 +63,6 @@ export class Robot {
       `🧹 Nettoyage de la position ${this.position}. État de la batterie: ${this.battery}%`
     );
 
-    console.warn(this);
     house.clean(this.position);
 
     this.checkBattery();
